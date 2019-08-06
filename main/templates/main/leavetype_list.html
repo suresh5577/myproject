@@ -1,0 +1,25 @@
+{% extends 'main/index.html'%}
+{% block content%}
+	<h4><a href="/leavetypes_create/">CREATE LEAVE TYPE</a></h4>
+	<h1> SHOWING LEAVES</h1>
+	
+	<table border="2">
+		<tr>
+			<th>NAME</th>
+			<th>COUNT</th>
+			<th>PIC</th>
+			
+		</tr>
+		{% for obj in object_list %}
+			<tr>
+				<td>{{ obj.name }}</td>
+				<td>{{ obj.count }}</td>
+				<td><img src="/media/{{obj.pic}}" width=50 height=50></td>
+				<td>
+					<a href="/leavetypes_update/{{ obj.id }}">UPDATE |</a>
+					<a href="/leavetypes_delete/{{ obj.id }}">DELETE</a>
+				</td>
+			</tr>
+		{% endfor %}
+	</table>
+{% endblock %} 

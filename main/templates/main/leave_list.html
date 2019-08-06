@@ -1,0 +1,29 @@
+{% extends 'main/index.html'%}
+{% block content%}
+	<h4><a href="/leave_create/">CREATE LEAVE</a></h4>
+	<h1> SHOWING LEAVES</h1>
+	
+	<table border="2">
+		<tr>
+			<th>Description</th>
+			<th>Leave Type</th>
+			<th>Leave create Date</th>
+			<th>Leave applied Date</th>
+			<th>Applied for</th>
+			<th>Operation</th>
+		</tr>
+		{% for obj in object_list %}
+			<tr>
+				<td>{{ obj.desc }}</td>
+				<td>{{ obj.type }}</td>
+				<td>{{ obj.date }}</td>
+				<td>{{ obj.leavedate }}</td>
+				<td>{{ obj.user }}</td>
+				<td>
+					<a href="/leave_update/{{ obj.id }}">UPDATE |</a>
+					<a href="/leave_delete/{{ obj.id }}">DELETE</a>
+				</td>
+			</tr>
+		{% endfor %}
+	</table>
+{% endblock %} 

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <title>Leave management</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="{% static '/main/css/main.css'%}">
+  
+  <script type="text/javascript" src="{% static '/main/js/main.js'%}"></script>
+</head>
+<body style="height:1500px" background="{% static '/main/images/bg.jpeg' %}">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header"> <!-- static will reffer upto the static folder -->
+      <img src="{% static '/main/images/logo.png' %}" width=100 height=50>
+    </div>
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">LEAVE MANAGEMENT</a>
+    </div>
+    <ul class="nav navbar-nav">
+      {% block menu%}
+      <li class="active"><a href="/">Home</a></li>
+      {% endblock %}
+      
+    </ul>
+  </div>
+</nav>
+  
+<div class="container" style="margin-top:50px">
+  <br>
+  {% block content %}
+  {{ msg }}
+  {% if request.user.is_authenticated %}
+    <p> USER AUTHETICATED</p>
+  {% else %}
+      <form method="post">
+        {% csrf_token %}
+        Username: <input type="text" name="username"><br><br>
+        password: <input type="password" name="password"><br><br>
+        <input type="submit" name="">
+      </form>
+      <br>
+      <a href="/register">REGISTER</a>
+  {% endif %}
+  {% endblock %}
+</div>
+</body>
+</html>
